@@ -27,32 +27,44 @@ int get_lines(FILE *fileConnection) {
 char** get_commands(FILE *fileConnection) {
   int i = 0;
   int count = 0;
-  char *line = NULL;
   char ch;
 
   /* allocate array - reallocate once we know no. of lines*/
-  char** ret = malloc(get_lines(fileConnection) * sizeof(char*));
+  char* *ret = malloc(get_lines(fileConnection) * sizeof(char*));
 
   /* reset the file - we have to traverse the file to count lines */
   rewind(fileConnection);
 
   /* allocate a starting amount of memory for the string */
-  line = (char *) malloc((i+1) * sizeof(char));
+  char *line = (char *) malloc((i+1) * sizeof(char));
 
   /* traverse file - add each character to line*/
   while (!feof(fileConnection)) {
     /* get character */
     ch = fgetc(fileConnection);
-    line = (char *) malloc((i+1) * sizeof(char));
+
+    /* If we reach EOF - break out of loop */
+    if (ch == -1) {
+      free(line);
+      break;
+    }
 
     /* add to ret on new line */
     if (ch == '\n') {
-      ret[count] = line;
-      free(line);
+      // ret[count] = line;
+      ret[count] = strdup(line);
       count++;
       i = 0;
+      continue;
     }
 
+    /* if not a new line then increase memory size of line by 1 and add char */
+    else {
+      line = (char *) realloc(line, (i+1) * sizeof(char));
+      line[i] = ch;
+    }
+
+    /* increment iteration counter */
     i++;
   }
 
@@ -63,8 +75,6 @@ char** get_commands(FILE *fileConnection) {
 int main(int argc, char *argv[]) {
   char *filename;
   char** commands;
-  char* next;
-  int i;
   FILE *fp;
 
   /* command line args parser */
@@ -90,11 +100,11 @@ int main(int argc, char *argv[]) {
   /* allocate an array to store the commands from the file */
   commands = get_commands(fp);
 
-  next = commands[0];
-  while (next) {
-    printf("%s\n", next);
-    i++;
-    next = commands[i];
+  /* put the call to the compiler here */
+
+  /* free each item in the list of commands */
+  for (int i = 0; i < get_lines(fp); ++i) {
+    free(commands[i]);
   }
 
   /* close/free any memory allocated */
