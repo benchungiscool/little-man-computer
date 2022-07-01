@@ -1,4 +1,5 @@
-#include "main.h"
+#include "run.h"
+#include "compiler.h"
 
 #define _GNU_SOURCE
 #include <stdio.h>
@@ -101,6 +102,7 @@ int main(int argc, char *argv[]) {
   commands = get_commands(fp);
 
   /* put the call to the compiler here */
+  compile(commands);
 
   /* free each item in the list of commands */
   for (int i = 0; i < get_lines(fp); ++i) {

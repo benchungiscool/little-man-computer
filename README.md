@@ -3,7 +3,7 @@
 A C implementation of the little man computer. A good introduction to LMC can be found [here](http://elearning.algonquincollege.com/coursemat/dat2343/lectures.f03/12-LMC.htm).
 
 ## Dependencies
-- gcc
+- gcc (this is what I used to develop - you can use a C compiler of your choice)
 
 ## Installation
 To compile the program you can run the following.
@@ -19,5 +19,6 @@ After compilation you can run the following command.
 ./a.out -f [YOUR FILE HERE]
 ```
 
+## Instruction set
 
-
+## Example file
