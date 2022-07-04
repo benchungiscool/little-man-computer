@@ -1,6 +1,6 @@
 # Little Man Computer
 ## Introduction
-A C implementation of the little man computer. A good introduction to LMC can be found [here](http://elearning.algonquincollege.com/coursemat/dat2343/lectures.f03/12-LMC.htm).
+A C implementation of the little man computer. A good introduction to LMC can be found [here](http://www.yorku.ca/itec1000/LectLittleMan.pdf).
 
 ## Dependencies
 - gcc (this is what I used to develop - you can use a C compiler of your choice)
@@ -20,5 +20,16 @@ After compilation you can run the following command.
 ```
 
 ## Instruction set
+| Mnemomic | Function                                              |
+|----------|-------------------------------------------------------|
+| INP      | Take input from the user                              |
+| LDA      | Load the value in the given memory location to ALU    |
+| STA      | Store the value in the ALU in a given memory location |
+|          |                                                       |
+|          |                                                       |
+|          |                                                       |
+|          |                                                       |
+|          |                                                       |
+
 
 ## Example file
