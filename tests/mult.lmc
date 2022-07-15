@@ -1,0 +1,28 @@
+         INP
+         STA    first
+         INP
+         STA    second
+
+loop     LDA    ret
+         ADD    first
+         STA    ret
+
+         LDA    count
+         ADD    one
+         STA    count
+
+         SUB    second
+         OUT
+
+         BRZ    end
+         BRA    loop
+
+end      LDA    ret
+         OUT
+         HLT
+
+first    DAT
+second   DAT
+one      DAT    1
+count    DAT    
+ret      DAT
